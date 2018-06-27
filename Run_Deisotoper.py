@@ -148,45 +148,14 @@ def mzml_to_meta(basepath, filetype):
                 meta_dic["scan"].append(get_scan(str(spectrum.getNativeID())))
     mzml_meta_df = pd.DataFrame(meta_dic)
     return(mzml_meta_df)
+    
 # =============================================================================
 # start stuff
 # =============================================================================
-basepath = "/home/sgiese/data/SwantjeTest/test/chaetomium_new/process/*/*/*"
-basepath = "/home/sgiese/data/SwantjeTest/test/process/HSA/*.mgf"
-basepath = "/home/sgiese/data/SwantjeTest/test/process/Chaetomium/*.mgf"
-basepath = "/data/sgiese/Projects/deisotoping"
 basepath = "/home/sgiese/data/4swantje/"
 outpath = "/home/sgiese/data/4swantje/"
-
-#set the input directory and the output directory
-#basepath = "/home/sgiese/data/Myco_deiso/*.mgf"
-#outpath = "/home/sgiese/data/Myco_deiso/processed/"
-
 
 if __name__ == "__main__":
     process_files(basepath, outpath, filetype="mzML", n_jobs=-1, return_type="df")
 
 
-# =============================================================================
-# debug
-# =============================================================================
-#import ProteoFileReader as PFR
-#n_jobs = 1
-#infile = "Error_MGF_7" 
-#dt = de.Deisotoper()
-#
-#MGF_file = PFR.MGF_Reader()
-#MGF_file.load(infile)
-#for ii, spectrum in enumerate(MGF_file):
-#    break
-#
-#
-#mz = spectrum.getMZ()
-#intensity = spectrum.getIntensities()
-#G = dt.spec2graph(mz, intensity, 20, 1, 7)
-#cluster_ar = dt.extract_isotope_cluster(G, True)
-#cluster_res = dt.resolve_ambiguous(cluster_ar, mz, intensity, 0.6, 0.25, 0.3, True)
-#cluster_df = dt.assemble_spectrum(cluster_res, mz, intensity, spectrum.getTitle())
-#
-#
-#dt_spectra = dt.deisotope_spectra(infile, n_jobs=1)
